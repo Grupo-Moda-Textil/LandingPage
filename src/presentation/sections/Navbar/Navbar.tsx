@@ -57,22 +57,7 @@ export const Navbar = () => {
             className="group flex items-center transition-opacity hover:opacity-80"
             aria-label="Volver a Inicio"
           >
-             {/* 
-              NOTA: Cuando tengas el logotipo real, BORRA el <div> de abajo 
-              y DESCOMENTA la línea de <img /> configurando tu ruta real 
-             */}
-             
-             {/* <img src="/logo-oficial.png" alt="Logo Grupo Moda Textil" className="h-10 md:h-12 w-auto object-contain" /> */}
-             
-             <div className={`flex items-center justify-center w-28 h-10 border border-dashed rounded-lg transition-colors duration-300 ${
-               isScrolled 
-                ? 'border-carbon-black/30 text-carbon-black/60' 
-                : 'border-bright-snow/30 text-bright-snow/60'
-             }`}>
-               <span className="text-[10px] sm:text-xs font-bold tracking-widest uppercase">
-                 Logo Aquí
-               </span>
-             </div>
+             <img src="/Logo.png" alt="Logo Grupo Moda Textil" className="h-14 md:h-16 w-auto object-contain" />
           </a>
 
           {/* Desktop Nav */}

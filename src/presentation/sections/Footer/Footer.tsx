@@ -9,9 +9,9 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           
           <div className="col-span-1 md:col-span-2 space-y-6">
-            <h2 className="text-2xl font-bold tracking-tighter text-bright-snow">
-              {mockCompanyInfo.name}
-            </h2>
+            <div className="flex items-center h-12 mb-4 text-bright-snow">
+              <img src="/Logo.png" alt={mockCompanyInfo.name} className="h-full w-auto object-contain brightness-0 invert" />
+            </div>
             <p className="text-grey-olive max-w-md">
               {mockCompanyInfo.description}
             </p>
