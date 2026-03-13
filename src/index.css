@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --color-carbon-black: #1A1A1A;
+  --color-bright-snow: #F9F9F9;
+  --color-golden-bronze: #C5A059;
+  --color-grey-olive: #8E8E8E;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  @apply bg-bright-snow text-carbon-black font-sans antialiased;
+}
