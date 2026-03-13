@@ -31,7 +31,7 @@ export const About = () => {
               Diseñando el Futuro de la Tela
             </h3>
             <p className="text-lg text-grey-olive leading-relaxed">
-              En Grupo Moda Textil, nos dedicamos a transformar ideas en realidades tangibles. Con décadas de experiencia en la industria, combinamos técnicas tradicionales con innovación de vanguardia.
+              En Grupo Moda Textil, somos expertos en servicios de tejeduría, creando prendas de punto como suéteres, vestidos, bufandas y gorros con la más alta calidad. Combinamos décadas de experiencia con innovación de vanguardia.
             </p>
             <p className="text-lg text-grey-olive leading-relaxed pb-4">
               Nuestro compromiso con la sostenibilidad y la calidad nos ha permitido posicionarnos como líderes en el mercado global, ofreciendo soluciones textiles que no solo visten, sino que inspiran.

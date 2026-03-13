@@ -63,7 +63,7 @@ export const Hero = () => {
             initial="initial"
             whileInView="whileInView"
           >
-            Diseño innovador, materiales de calidad suprema y procesos de manufactura para el mercado global.
+            Especialistas en tejeduría de alta calidad: suéteres, vestidos, bufandas, gorros y más. Diseño innovador y manufactura para el mercado global.
           </motion.p>
           
           <motion.div 

@@ -3,8 +3,8 @@ import type { Service } from '../../domain/types/Service';
 export const mockServices: Service[] = [
   {
     id: '1',
-    title: 'Consultoría Textil',
-    description: 'Asesoramiento experto en la selección de materiales, procesos y diseño para lograr la máxima calidad e innovación.',
+    title: 'Tejeduría Especializada',
+    description: 'Confección de alto nivel en prendas de punto como suéteres, vestidos, bufandas y gorros.',
     icon: 'Shirt'
   },
   {
