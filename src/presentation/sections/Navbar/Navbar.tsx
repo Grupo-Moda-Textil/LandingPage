@@ -50,14 +50,29 @@ export const Navbar = () => {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="flex items-center justify-between w-full relative">
+          {/* Espacio Reservado para Futuro Logo Corporativo */}
           <a 
             href="#hero" 
             onClick={(e) => handleNavClick(e, '#hero')}
-            className={`text-xl font-black tracking-tighter uppercase transition-colors duration-300 ${
-              isScrolled ? 'text-carbon-black' : 'text-bright-snow'
-            }`}
+            className="group flex items-center transition-opacity hover:opacity-80"
+            aria-label="Volver a Inicio"
           >
-            G. M. T.
+             {/* 
+              NOTA: Cuando tengas el logotipo real, BORRA el <div> de abajo 
+              y DESCOMENTA la línea de <img /> configurando tu ruta real 
+             */}
+             
+             {/* <img src="/logo-oficial.png" alt="Logo Grupo Moda Textil" className="h-10 md:h-12 w-auto object-contain" /> */}
+             
+             <div className={`flex items-center justify-center w-28 h-10 border border-dashed rounded-lg transition-colors duration-300 ${
+               isScrolled 
+                ? 'border-carbon-black/30 text-carbon-black/60' 
+                : 'border-bright-snow/30 text-bright-snow/60'
+             }`}>
+               <span className="text-[10px] sm:text-xs font-bold tracking-widest uppercase">
+                 Logo Aquí
+               </span>
+             </div>
           </a>
 
           {/* Desktop Nav */}
