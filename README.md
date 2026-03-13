@@ -1,73 +1,24 @@
-# React + TypeScript + Vite
+# Grupo Moda Textil - Landing Page Premium
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Landing page moderna, cinematográfica y 100% responsiva para **Grupo Moda Textil**, una empresa de manufactura de calidad suprema dedicada al mercado global.
 
-Currently, two official plugins are available:
+El proyecto está diseñado para transmitir una estética "premium" y elegante, enfocada en la experiencia de usuario (UX). Destaca por incorporar interacciones avanzadas, animaciones inmersivas vinculadas al desplazamiento (scroll), y una estructuración bajo los principios de Domain-Driven Design (DDD) adaptados a un flujo de Frontend estricto.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Tecnologías y Stack
 
-## React Compiler
+Este proyecto fue construido utilizando los estándares más modernos de desarrollo web:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **React 19:** Biblioteca principal para la creación de componentes de UI.
+* **TypeScript:** Para tipado estricto, interfaces y prevención de errores en compilación.
+* **Vite:** Herramienta de compilación extremadamente rápida (HMR).
+* **Tailwind CSS:** Para el diseño adaptable móvil-primero utilizando la paleta estricta corporativa (`#1A1A1A`, `#F9F9F9`, `#C5A059`, `#8E8E8E`).
+* **Framer Motion:** Empleado para montar animaciones reveladoras, efectos Parallax, layouts 3D asíncronos y comportamientos naturales usando físicas de muelle (*Spring Physics*).
+* **Lenis (\@studio-freight/lenis):** Para la manipulación e intercepción del inercial del ratón creando un "Smooth Scrolling" suave permanente.
+* **Lucide React:** Para el sistema de íconos consistente vectorizado.
 
-## Expanding the ESLint configuration
+## 🎨 Paleta Corporativa Estricta
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Carbon Black** (`#1A1A1A`): Fondos base y textos contrastantes.
+- **Bright Snow** (`#F9F9F9`): Fondos opuestos, textos claros, tarjetas.
+- **Golden Bronze** (`#C5A059`): Único color de acentuación para botones o palabras heroicas destacadas.
+- **Grey Olive** (`#8E8E8E`): Descripciones mutadas, bordes y notas secundarias.
