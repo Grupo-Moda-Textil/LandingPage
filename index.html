@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>grupomodatextil</title>
+  </head>
+  <body>
+    <script>
+      window.addEventListener('error', function(e) {
+        var errDiv = document.createElement('div');
+        errDiv.style.cssText = 'position:fixed;top:0;left:0;right:0;background:red;color:white;padding:20px;z-index:9999;font-family:monospace;white-space:pre-wrap;';
+        errDiv.innerText = e.message + '\n' + e.filename + ':' + e.lineno + '\n' + (e.error ? e.error.stack : '');
+        document.body.appendChild(errDiv);
+      });
+      window.addEventListener('unhandledrejection', function(e) {
+        var errDiv = document.createElement('div');
+        errDiv.style.cssText = 'position:fixed;top:50%;left:0;right:0;background:orange;color:white;padding:20px;z-index:9999;font-family:monospace;white-space:pre-wrap;';
+        errDiv.innerText = 'Unhandled Rejection: ' + e.reason + '\n' + (e.reason && e.reason.stack ? e.reason.stack : '');
+        document.body.appendChild(errDiv);
+      });
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
