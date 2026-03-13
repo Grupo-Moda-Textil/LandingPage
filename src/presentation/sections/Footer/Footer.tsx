@@ -1,3 +1,4 @@
+import { Instagram, Facebook } from 'lucide-react';
 import { mockCompanyInfo } from '../../../infrastructure/mocks/company';
 
 export const Footer = () => {
@@ -6,44 +7,23 @@ export const Footer = () => {
   return (
     <footer className="bg-[#111111] border-t border-carbon-black pt-16 pb-8 text-bright-snow">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
           
-          <div className="col-span-1 md:col-span-2 space-y-6">
-            <div className="flex items-center h-12 mb-4 text-bright-snow">
+          <div className="flex flex-col items-center md:items-start space-y-6 max-w-sm">
+            <div className="flex items-center h-12 mb-2 text-bright-snow">
               <img src="/Logo.png" alt={mockCompanyInfo.name} className="h-full w-auto object-contain brightness-0 invert" />
             </div>
-            <p className="text-grey-olive max-w-md">
+            <p className="text-grey-olive text-center md:text-left">
               {mockCompanyInfo.description}
             </p>
-            <div className="flex gap-4 pt-4">
-              <a href={mockCompanyInfo.socialLinks.instagram} className="text-grey-olive hover:text-golden-bronze transition-colors">
-                Instagram
+            <div className="flex gap-4 pt-2">
+              <a href={mockCompanyInfo.socialLinks.instagram} aria-label="Instagram" className="text-grey-olive hover:text-golden-bronze transition-colors">
+                <Instagram size={24} />
               </a>
-              <a href={mockCompanyInfo.socialLinks.linkedin} className="text-grey-olive hover:text-golden-bronze transition-colors">
-                LinkedIn
+              <a href={mockCompanyInfo.socialLinks.facebook} aria-label="Facebook" className="text-grey-olive hover:text-golden-bronze transition-colors">
+                <Facebook size={24} />
               </a>
             </div>
-          </div>
-
-          <div className="space-y-6">
-            <h4 className="text-lg font-semibold border-b border-grey-olive/20 pb-2 inline-block">
-              Navegación
-            </h4>
-            <ul className="space-y-3">
-              <li><a href="#hero" className="text-grey-olive hover:text-golden-bronze transition-colors">Inicio</a></li>
-              <li><a href="#about" className="text-grey-olive hover:text-golden-bronze transition-colors">Nuestra Esencia</a></li>
-              <li><a href="#services" className="text-grey-olive hover:text-golden-bronze transition-colors">Nuestras Líneas</a></li>
-            </ul>
-          </div>
-
-          <div className="space-y-6">
-            <h4 className="text-lg font-semibold border-b border-grey-olive/20 pb-2 inline-block">
-              Contacto
-            </h4>
-            <ul className="space-y-3 text-grey-olive">
-              <li>{mockCompanyInfo.email}</li>
-              <li>{mockCompanyInfo.phone}</li>
-            </ul>
           </div>
 
         </div>
