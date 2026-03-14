@@ -5,6 +5,7 @@ import { Services } from './presentation/sections/Services/Services';
 import { Contact } from './presentation/sections/Contact/Contact';
 import { Footer } from './presentation/sections/Footer/Footer';
 import { SmoothScrollProvider } from './presentation/providers/SmoothScrollProvider';
+import { FloatingWhatsApp } from './presentation/components/ui/FloatingWhatsApp';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </div>
     </SmoothScrollProvider>
   );
