@@ -19,7 +19,7 @@ export const Hero = () => {
       
       {/* Parallax Background */}
       <motion.div 
-        className="absolute inset-0 z-0 bg-[url('https://images.unsplash.com/photo-1558769132-cb1fac0840c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-30 origin-top"
+        className="absolute inset-0 z-0 bg-[url('/imagen-5.webp')] bg-cover bg-center opacity-30 origin-top"
         style={{ y: yBg }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-carbon-black via-carbon-black/60 to-transparent z-0" />
