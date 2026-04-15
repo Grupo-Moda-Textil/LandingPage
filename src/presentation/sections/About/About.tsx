@@ -1,17 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { motionVariants } from '../../../application/animations/variants';
-import { Button } from '../../components/ui/Button';
+import { useLanguage } from '../../../application/contexts/LanguageContext';
 
 const carouselImages = [
-  '/imagen-1.jpeg',
-  '/imagen-2.webp',
-  '/imagen-3.jpg',
-  '/imagen-4.jpeg',
+  'https://images.unsplash.com/photo-1558584670-9116fd99pre5?q=80&w=2670&auto=format&fit=crop', // Textile craft 1
+  'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2670&auto=format&fit=crop', // Textile fabric 2
+  'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?q=80&w=2670&auto=format&fit=crop', // Close up wool 3
+  'https://images.unsplash.com/photo-1524234107056-1c1f48f64ab8?q=80&w=2670&auto=format&fit=crop', // Loom 4
 ];
 
 export const About = () => {
+  const { t } = useLanguage();
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -31,97 +31,93 @@ export const About = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       nextImage();
-    }, 3500);
+    }, 5000);
     return () => clearInterval(timer);
   }, []);
 
-  // Slow smooth movement for the image Parallax
-  const yImage = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
+  // Soft parallax for image
+  const yImage = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
   
   return (
-    <section ref={containerRef} id="about" className="py-16 md:py-24 bg-bright-snow w-full overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section ref={containerRef} id="about" className="py-32 bg-white w-full overflow-hidden border-t border-zinc-100">
+      <div className="container mx-auto px-6 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
           <motion.div 
-            className="space-y-6"
-            variants={motionVariants.zoomInSpring}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={motionVariants.zoomInSpring.viewport}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="flex flex-col items-start gap-8"
           >
-            <h2 className="text-sm font-semibold tracking-widest text-golden-bronze uppercase">
-              Nuestra Esencia
+            <span className="text-xs uppercase tracking-[0.3em] font-semibold text-zinc-400">
+              {t.about.overline}
+            </span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-zinc-900 leading-[1.1]">
+              {t.about.title}
             </h2>
-            <h3 className="text-4xl md:text-5xl font-bold text-carbon-black leading-tight">
-              Diseñando el Futuro de la Tela
-            </h3>
-            <p className="text-lg text-grey-olive leading-relaxed">
-              En Grupo Moda Textil, somos expertos en servicios de tejeduría, creando prendas de punto como suéteres, vestidos, bufandas y gorros con la más alta calidad. Combinamos décadas de experiencia con innovación de vanguardia.
-            </p>
-            <p className="text-lg text-grey-olive leading-relaxed pb-4">
-              Nuestro compromiso con la sostenibilidad y la calidad nos ha permitido posicionarnos como líderes en el mercado global, ofreciendo soluciones textiles que no solo visten, sino que inspiran.
-            </p>
-            <a href="#services">
-              <Button variant="outline" className="px-8 py-3">
-                Nuestras Líneas
-              </Button>
+            <div className="flex flex-col gap-6 text-lg text-zinc-500 font-light leading-relaxed">
+               <p>{t.about.desc1}</p>
+               <p>{t.about.desc2}</p>
+            </div>
+            
+            <a href="#fibras" className="mt-4 px-10 py-5 bg-zinc-900 text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-zinc-800 transition-colors duration-300">
+              {t.about.cta}
             </a>
           </motion.div>
 
-          {/* Image Carousel with Parallax */}
+          {/* Image Area with Frame & Carousel */}
           <motion.div 
-            className="relative h-[400px] sm:h-[500px] lg:h-[600px] w-full rounded-2xl overflow-hidden shadow-2xl mt-8 lg:mt-0 group"
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="relative h-[500px] lg:h-[700px] w-full bg-zinc-100 overflow-hidden group shadow-sm border border-zinc-100"
           >
-            <div className="absolute inset-0 bg-carbon-black/5 z-10 pointer-events-none transition-opacity duration-300 group-hover:opacity-0" />
-            
             <AnimatePresence mode="popLayout">
               <motion.img 
                 key={currentIndex}
                 src={carouselImages[currentIndex]} 
-                alt={`Taller de confección y telas ${currentIndex + 1}`} 
-                className="absolute top-0 left-0 w-full h-[130%] object-cover grayscale-[10%]"
+                alt="Proceso Textil Premium" 
+                className="absolute top-0 left-0 w-full h-[120%] object-cover grayscale-[30%] opacity-90"
                 style={{ y: yImage }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
               />
             </AnimatePresence>
 
-            {/* Controls */}
-            <div className="absolute inset-0 z-20 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <button 
-                onClick={prevImage}
-                className="p-2 rounded-full bg-bright-snow/80 text-carbon-black hover:bg-golden-bronze hover:text-bright-snow transition-colors shadow-[0_4px_14px_0_rgba(0,0,0,0.1)]"
-              >
-                <ChevronLeft size={24} />
-              </button>
-              <button 
-                onClick={nextImage}
-                className="p-2 rounded-full bg-bright-snow/80 text-carbon-black hover:bg-golden-bronze hover:text-bright-snow transition-colors shadow-[0_4px_14px_0_rgba(0,0,0,0.1)]"
-              >
-                <ChevronRight size={24} />
-              </button>
+            {/* Subtle Controls */}
+            <div className="absolute inset-x-8 bottom-8 z-20 flex items-center justify-between pointer-events-none">
+              <div className="flex gap-2 pointer-events-auto">
+                {carouselImages.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentIndex(idx)}
+                    className={`h-[2px] transition-all duration-500 ${
+                      idx === currentIndex ? 'w-12 bg-white' : 'w-4 bg-white/30 hover:bg-white/60'
+                    }`}
+                  />
+                ))}
+              </div>
+              <div className="flex gap-4 pointer-events-auto">
+                <button 
+                  onClick={prevImage}
+                  className="w-10 h-10 flex items-center justify-center border border-white/20 text-white hover:bg-white hover:text-zinc-900 transition-all"
+                >
+                  <ChevronLeft size={18} strokeWidth={1} />
+                </button>
+                <button 
+                  onClick={nextImage}
+                  className="w-10 h-10 flex items-center justify-center border border-white/20 text-white hover:bg-white hover:text-zinc-900 transition-all"
+                >
+                  <ChevronRight size={18} strokeWidth={1} />
+                </button>
+              </div>
             </div>
-
-            {/* Indicators */}
-            <div className="absolute bottom-6 left-0 right-0 z-20 flex justify-center gap-2">
-              {carouselImages.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentIndex(idx)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                    idx === currentIndex ? 'bg-golden-bronze scale-125' : 'bg-bright-snow/60 hover:bg-bright-snow'
-                  }`}
-                  aria-label={`Ir a la imagen ${idx + 1}`}
-                />
-              ))}
-            </div>
+            
+            <div className="absolute inset-0 bg-zinc-950/10 mix-blend-overlay pointer-events-none" />
           </motion.div>
 
         </div>

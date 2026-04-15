@@ -1,86 +1,80 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { motionVariants } from '../../../application/animations/variants';
-import { Button } from '../../components/ui/Button';
-import { useRef } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useLanguage } from '../../../application/contexts/LanguageContext';
 
-export const Hero = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"]
-  });
-  
-  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacityText = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const yText = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+export const Hero: React.FC = () => {
+  const { t } = useLanguage();
 
   return (
-    <section ref={ref} id="hero" className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-carbon-black">
+    <section id="hero" className="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden">
+      {/* Background Image & Overlay */}
+      <div className="absolute inset-0 w-full h-full bg-zinc-950">
+        {/* Imagen de fondo local (/public) */}
+        <img 
+          src="/imagen-5.webp" 
+          alt="Textura de fondo premium al inicio" 
+          className="w-full h-full object-cover scale-105 transform motion-safe:animate-[pulse_20s_infinite_alternate] opacity-60"
+        />
+        <div className="absolute inset-0 bg-zinc-950/40 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-zinc-950/80" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 text-center text-white px-6 w-full max-w-5xl mx-auto flex flex-col items-center mt-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+        >
+          <span className="block text-xs md:text-sm uppercase tracking-[0.3em] font-medium mb-6 text-zinc-300">
+            {t.hero.overline}
+          </span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-light tracking-tight leading-[1.1] mb-8">
+            {t.hero.title.split('\n').map((line, i) => <React.Fragment key={i}>{line}<br/></React.Fragment>)}
+          </h1>
+          <p className="text-lg md:text-xl font-light text-zinc-200 mb-12 max-w-2xl mx-auto leading-relaxed">
+            {t.hero.subtitle}
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
+          className="flex flex-col sm:flex-row items-center gap-6"
+        >
+          <a href="#fibras" className="px-10 py-5 bg-white text-zinc-950 text-xs font-bold uppercase tracking-[0.2em] rounded-none hover:bg-zinc-200 transition-colors duration-300 w-full sm:w-auto text-center">
+            {t.hero.ctaPrimary}
+          </a>
+          <a href="#products" className="px-10 py-5 bg-transparent border border-white text-white text-xs font-bold uppercase tracking-[0.2em] rounded-none hover:bg-white hover:text-zinc-950 transition-all duration-300 w-full sm:w-auto text-center">
+            {t.hero.ctaSecondary}
+          </a>
+        </motion.div>
+      </div>
       
-      {/* Parallax Background */}
+      {/* Scroll indicator */}
       <motion.div 
-        className="absolute inset-0 z-0 bg-[url('/imagen-5.webp')] bg-cover bg-center opacity-30 origin-top"
-        style={{ y: yBg }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-carbon-black via-carbon-black/60 to-transparent z-0" />
-      <div className="absolute inset-0 bg-carbon-black/20 z-0 mix-blend-multiply" />
-      
-      <motion.div 
-        className="container relative z-10 mx-auto px-4 md:px-6 flex flex-col items-center text-center mt-20"
-        style={{ opacity: opacityText, y: yText }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10"
       >
-        <div className="max-w-4xl space-y-8">
-          
-          <div className="flex flex-col items-center">
-            <motion.div 
-              variants={motionVariants.maskContainer}
-              initial="initial"
-              whileInView="whileInView"
-              className="flex flex-col items-center"
-            >
-              <div className="overflow-hidden pb-2 leading-[1.1]">
-                <motion.h1 
-                  variants={motionVariants.maskItem}
-                  className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-bright-snow"
-                >
-                  ELEVANDO EL
-                </motion.h1>
-              </div>
-              <div className="overflow-hidden pb-4 leading-[1.1] pt-1 mt-[-8px] sm:mt-0">
-                <motion.h1 
-                  variants={motionVariants.maskItem}
-                  className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-golden-bronze"
-                >
-                  ESTÁNDAR TEXTIL
-                </motion.h1>
-              </div>
-            </motion.div>
-          </div>
-          
-          <motion.p 
-            className="text-lg sm:text-xl md:text-2xl text-grey-olive font-light max-w-2xl mx-auto px-4"
-            variants={motionVariants.fadeInUpSpring}
-            initial="initial"
-            whileInView="whileInView"
-          >
-            Especialistas en tejeduría de alta calidad: suéteres, vestidos, bufandas, gorros y más. Diseño innovador y manufactura para el mercado global.
-          </motion.p>
-          
+        <span className="text-[9px] uppercase tracking-[0.3em] text-white opacity-60">{t.hero.scroll}</span>
+        <div className="w-[1px] h-12 bg-white/30 relative overflow-hidden">
           <motion.div 
-            className="pt-10 space-x-4"
-            variants={motionVariants.zoomInSpring}
-            initial="initial"
-            whileInView="whileInView"
-          >
-            <a href="#about">
-              <Button size="lg" className="text-lg px-8 py-4 rounded-full shadow-[0_0_40px_-10px_rgba(197,160,89,0.5)]">
-                Descubre Nuestra Esencia
-              </Button>
-            </a>
-          </motion.div>
+            className="w-full h-full bg-white origin-top"
+            animate={{ 
+              scaleY: [0, 1, 0],
+              y: ["-100%", "0%", "100%"]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
         </div>
       </motion.div>
-
     </section>
   );
 };

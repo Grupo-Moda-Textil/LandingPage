@@ -1,131 +1,76 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin } from 'lucide-react';
-import { motionVariants } from '../../../application/animations/variants';
-import { Button } from '../../components/ui/Button';
-import { mockCompanyInfo } from '../../../infrastructure/mocks/company';
+import { useLanguage } from '../../../application/contexts/LanguageContext';
 
-export const Contact = () => {
+export const Contact: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
-    <section id="contact" className="py-16 md:py-24 bg-bright-snow w-full overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6">
-        
-        {/* Animated large background text for visual impact */}
-        <motion.div 
-          className="hidden md:block absolute w-full left-0 top-1/2 -translate-y-1/2 pointer-events-none select-none overflow-hidden opacity-5"
-          initial={{ x: -200, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 0.03 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          <span className="text-[15rem] font-bold text-carbon-black whitespace-nowrap">
-            CONTACTA CON NOSOTROS
-          </span>
-        </motion.div>
+    <section id="contact" className="py-32 bg-zinc-900 text-white relative flex flex-col justify-center">
+      <div className="absolute inset-0 w-full h-full opacity-20">
+        <img 
+          src="https://images.unsplash.com/photo-1620619864222-3860533f07a0?q=80&w=2000&auto=format&fit=crop" 
+          alt="Contact Background Texture" 
+          className="w-full h-full object-cover grayscale mix-blend-overlay"
+        />
+      </div>
 
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 item-center">
-          
-          <motion.div 
-            className="space-y-8"
-            variants={motionVariants.fadeInUpSpring}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={motionVariants.fadeInUpSpring.viewport}
-          >
-            <div>
-              <h2 className="text-sm font-semibold tracking-widest text-golden-bronze uppercase mb-4">
-                Ponte en Contacto
-              </h2>
-              <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-carbon-black leading-tight mb-6">
-                Hagamos Realidad <br className="hidden sm:block" /> Tu Próxima Colección
-              </h3>
-              <p className="text-base sm:text-lg text-grey-olive leading-relaxed">
-                Estamos listos para transformar tus ideas. Déjanos tus datos y un asesor especializado se pondrá en contacto contigo en las próximas 24 horas.
-              </p>
-            </div>
+      <div className="container mx-auto px-6 lg:px-12 relative z-10">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+          <div className="lg:w-5/12 flex flex-col justify-center">
+            <motion.h2 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl lg:text-6xl font-serif font-light leading-[1.1] mb-6"
+            >
+              {t.contact.title.split('\n').map((line, i) => <React.Fragment key={i}>{line}<br/></React.Fragment>)}
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-lg text-zinc-400 font-light leading-relaxed max-w-md"
+            >
+              {t.contact.subtitle}
+            </motion.p>
+          </div>
 
-            <div className="space-y-6 pt-4">
-              <div className="flex items-center gap-4 group">
-                <div className="p-4 bg-carbon-black rounded-full group-hover:bg-golden-bronze transition-colors">
-                  <Mail className="text-bright-snow" size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-carbon-black">Email Corporativo</h4>
-                  <p className="text-grey-olive">{mockCompanyInfo.email}</p>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-4 group">
-                <div className="p-4 bg-carbon-black rounded-full group-hover:bg-golden-bronze transition-colors">
-                  <Phone className="text-bright-snow" size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-carbon-black">Teléfono</h4>
-                  <p className="text-grey-olive">{mockCompanyInfo.phone}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4 group">
-                <div className="p-4 bg-carbon-black rounded-full group-hover:bg-golden-bronze transition-colors">
-                  <MapPin className="text-bright-snow" size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-carbon-black">Sede Principal</h4>
-                  <p className="text-grey-olive">Distrito Textil, Ciudad Global 10012</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            className="bg-carbon-black p-6 sm:p-8 md:p-12 rounded-2xl shadow-xl border border-grey-olive/20"
-            variants={motionVariants.zoomInSpring}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={motionVariants.zoomInSpring.viewport}
-          >
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+          <div className="lg:w-7/12">
+            <motion.form 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="bg-white/5 backdrop-blur-sm p-8 md:p-12 border border-white/10 flex flex-col gap-6"
+              onSubmit={(e) => e.preventDefault()}
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-grey-olive">Nombre</label>
-                  <input 
-                    type="text" 
-                    className="w-full bg-[#222222] border border-grey-olive/30 rounded-lg px-4 py-3 text-bright-snow focus:outline-none focus:border-golden-bronze transition-colors"
-                    placeholder="Tu nombre"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-grey-olive">Empresa</label>
-                  <input 
-                    type="text" 
-                    className="w-full bg-[#222222] border border-grey-olive/30 rounded-lg px-4 py-3 text-bright-snow focus:outline-none focus:border-golden-bronze transition-colors"
-                    placeholder="Nombre de tu empresa"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-grey-olive">Email</label>
+                <input 
+                  type="text" 
+                  placeholder={t.contact.form.name} 
+                  className="w-full bg-transparent border-b border-white/20 pb-4 text-white placeholder:text-zinc-500 text-sm font-light focus:outline-none focus:border-white transition-colors"
+                />
                 <input 
                   type="email" 
-                  className="w-full bg-[#222222] border border-grey-olive/30 rounded-lg px-4 py-3 text-bright-snow focus:outline-none focus:border-golden-bronze transition-colors"
-                  placeholder="ejemplo@empresa.com"
+                  placeholder={t.contact.form.email} 
+                  className="w-full bg-transparent border-b border-white/20 pb-4 text-white placeholder:text-zinc-500 text-sm font-light focus:outline-none focus:border-white transition-colors"
                 />
               </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-grey-olive">Mensaje</label>
-                <textarea 
-                  className="w-full bg-[#222222] border border-grey-olive/30 rounded-lg px-4 py-3 text-bright-snow focus:outline-none focus:border-golden-bronze transition-colors min-h-[120px]"
-                  placeholder="¿En qué podemos ayudarte?"
-                />
-              </div>
-
-              <Button size="lg" className="w-full py-4 text-base">
-                Enviar Mensaje
-              </Button>
-            </form>
-          </motion.div>
-
+              <textarea 
+                placeholder={t.contact.form.message} 
+                rows={4}
+                className="w-full bg-transparent border-b border-white/20 pt-4 pb-4 text-white placeholder:text-zinc-500 text-sm font-light focus:outline-none focus:border-white transition-colors resize-none mt-4"
+              ></textarea>
+              <button 
+                type="button"
+                className="mt-6 self-start px-10 py-5 bg-white text-zinc-950 text-xs font-bold uppercase tracking-[0.2em] hover:bg-zinc-200 transition-colors"
+              >
+                {t.contact.form.submit}
+              </button>
+            </motion.form>
+          </div>
         </div>
       </div>
     </section>
